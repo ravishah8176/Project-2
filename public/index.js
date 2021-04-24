@@ -6,5 +6,3 @@ socket.on("message", (message) => {
   messageToClient = message;
   console.log(messageToClient);
 });
-
-// Message

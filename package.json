@@ -1,0 +1,22 @@
+{
+  "name": "connceting_project",
+  "version": "1.0.0",
+  "description": "Project connecting socket and node",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "Ravi shah",
+  "license": "ISC",
+  "dependencies": {
+    "console-read-write": "^0.1.1",
+    "express": "^4.17.1",
+    "serial-node": "0.0.11",
+    "serialport": "^9.0.7",
+    "socket.io": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

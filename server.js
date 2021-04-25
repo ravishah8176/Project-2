@@ -11,7 +11,6 @@ const Readline = require("@serialport/parser-readline");
 const inp_out = require("console-read-write");
 
 const serial = new serialPort();
-
 const fs = require("fs");
 
 const app = express();
@@ -47,16 +46,14 @@ getPortsList().then(async () => {
 });
 
 io.on("connection", (socket) => {
-
   fs.readFile("analogData.txt", "utf8", (err, data) => {
     var a = data;
     socket.emit("message", a);
   });
-  
 });
 
-// Run when clients connects
 
+// Run when clients connects
 server.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });

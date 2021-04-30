@@ -33,27 +33,22 @@ const getPortsList = async () => {
   });
 };
 
+var portConnect;
 getPortsList().then(async () => {
-  var a = "COM" + (await inp_out.ask("Enter the port Number:"));
-  console.log(`You are connecting to ${a}`);
-  const portConnect = new SerialPort(`${a}`);
+  const portConnect = new SerialPort(`COM6`);
   const parser = portConnect.pipe(new Readline({ delimiter: "\n" }));
+
   parser.on("data", (e) => {
-    fs.writeFile("analogData.txt", e, (err) => {
-      if (err) throw err;
-    });
+    fs.writeFile("analogData.txt", e, () => {});
+    io.sockets.emit("message", e);
   });
 });
 
 io.on("connection", (socket) => {
-  fs.readFile("analogData.txt", "utf8", (err, data) => {
-    var a = data;
-    socket.emit("message", a);
-  });
+  console.log(`New WS connected`);
 });
-
-
 // Run when clients connects
 server.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });
+
